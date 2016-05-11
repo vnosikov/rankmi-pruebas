@@ -1,0 +1,48 @@
+<html>
+	<head>		
+		<title>Prueba 4</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script src="app.js"></script>
+		<script src="taskListController.js"></script>
+		<script src="getTasksService.js"></script>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"></link>
+		<link rel="stylesheet" href="style.css"></link>
+	</head>
+	<body ng-app="taskManagerModule">
+		<div class="panel panel-default" id="tasksListPanel" ng-controller="taskListController">
+			<div class = "panel-heading">
+				Lista de Tareas (click a tarea para edtar)
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<div ng-repeat="task in tasks">
+						<li class="list-group-item" ng-class="{active: task == activeTask, taskCompleted: task.done}" ng-click="setTaskActive(task)">
+							{{task.name}}							
+							<div class="button-block" ng-show="task == activeTask">
+								<button type="button" class="btn btn-success" ng-disabled="activeTask.done" ng-click="completeActiveTask()">
+									<span class="glyphicon glyphicon-ok"></span>
+								</button>
+								<button type="button" class="btn btn-danger" ng-click="removeActiveTask()">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>
+							</div>
+						</li>
+						<div ng-show="task == activeTask" class="panel panel-primary">							
+							<div class="panel-body taskEditor">
+								<label>Nombre:</label><br>
+								<input ng-model="activeTask.name" placeholder="Escriba un nombre de tarea"></input><br>
+								<label>Comentario:</label><br>
+								<textarea ng-model="activeTask.comment" placeholder="Escriba un comentario..."></textarea>								
+							</div>
+						</div>
+					</div>
+				</ul>
+			</div>
+			<div class="panel-footer">
+				<button type="button" class="btn btn-default" ng-click="createNewTask()">Crear nueva tarea</button>
+				<button type="button" class="btn btn-default" ng-click="removeCompletedTasks()">Borrar tareas completados</button>				
+			</div>
+		</div>
+	</body>
+</html>

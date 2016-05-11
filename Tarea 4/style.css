@@ -1,0 +1,35 @@
+#tasksListPanel{
+	margin: 20px;
+	width: 500px;
+}
+
+#tasksListPanel > .panel-body{
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+.list-group-item:hover{
+	background-color: #f5f5f5;
+}
+
+.panel{
+	margin-bottom: 0px;
+}
+
+.button-block{
+	float: right;
+	margin-top: -4px;
+}
+
+.taskCompleted{
+	text-decoration: line-through;
+}
+
+.taskEditor > input{
+	width:100%
+}
+
+.taskEditor > textarea{
+	width: 100%;
+	max-height: 250px;
+}
